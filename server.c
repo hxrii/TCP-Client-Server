@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 
+
 int main(){
 
   char *ip = "127.0.0.1";
@@ -46,8 +47,28 @@ int main(){
     recv(client_sock, buffer, sizeof(buffer), 0);
     printf("Client: %s\n", buffer);
 
-    bzero(buffer, 1024);
-    strcpy(buffer, "HI, THIS IS SERVER. HAVE A NICE DAY!!!");
+
+
+
+    int len = strlen(buffer);
+    for(int i=0;i<len/2;i++)
+    {
+        char temp = buffer[i];
+        buffer[i]=buffer[len-1-i];
+        buffer[len-1-i]=temp;
+
+    }
+
+   
+
+   // bzero(buffer, 1024);
+
+    
+
+
+   // strcpy(buffer, "CTIN");
+
+
     printf("Server: %s\n", buffer);
     send(client_sock, buffer, strlen(buffer), 0);
 
