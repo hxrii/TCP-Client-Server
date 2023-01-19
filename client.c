@@ -32,7 +32,7 @@ int main(){
   printf("Connected to the server.\n");
 
   
-    int ch=0;
+   
     
   printf("Enter the string: ");
   char temp[1024];
