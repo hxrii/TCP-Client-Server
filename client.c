@@ -22,6 +22,7 @@ int main(){
   }
   printf("[+]TCP server socket created.\n");
 
+
   memset(&addr, '\0', sizeof(addr));
   addr.sin_family = AF_INET;
   addr.sin_port = port;
@@ -30,18 +31,24 @@ int main(){
   connect(sock, (struct sockaddr*)&addr, sizeof(addr));
   printf("Connected to the server.\n");
 
+  
+    int ch=0;
+    
+  printf("Enter the string: ");
+  char temp[1024];
+  scanf("%s",temp);
   bzero(buffer, 1024);
-  strcpy(buffer, "NITC");
+  strcpy(buffer, temp);
   printf("Client: %s\n", buffer);
   send(sock, buffer, strlen(buffer), 0);
 
   bzero(buffer, 1024);
   recv(sock, buffer, sizeof(buffer), 0);
   printf("Server: %s\n", buffer);
-
+  
   close(sock);
   printf("Disconnected from the server.\n");
-
+  
   return 0;
 
 }

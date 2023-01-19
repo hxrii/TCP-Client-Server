@@ -59,23 +59,12 @@ int main(){
 
     }
 
-   
-
-   // bzero(buffer, 1024);
-
-    
-
-
-   // strcpy(buffer, "CTIN");
-
-
     printf("Server: %s\n", buffer);
     send(client_sock, buffer, strlen(buffer), 0);
 
-    close(client_sock);
+  close(client_sock);
     printf("[+]Client disconnected.\n\n");
-
+    break;
   }
-
   return 0;
 }
