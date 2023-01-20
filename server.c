@@ -33,7 +33,7 @@ int main(){
     perror("[-]Bind error");
     exit(1);
   }
-  printf("[+]Bind to the port number: %d\n", port);
+  printf("[x]Bind to the port number: %d\n", port);
 
   listen(server_sock, 5);
   printf("Listening...\n");
@@ -45,7 +45,7 @@ int main(){
 
     bzero(buffer, 1024);
     recv(client_sock, buffer, sizeof(buffer), 0);
-    printf("Client: %s\n", buffer);
+    printf("[+]Data Recieved: %s\n", buffer);
 
 
 
@@ -59,7 +59,7 @@ int main(){
 
     }
 
-    printf("Server: %s\n", buffer);
+    printf("[+]Data Sent: %s\n", buffer);
     send(client_sock, buffer, strlen(buffer), 0);
 
   close(client_sock);

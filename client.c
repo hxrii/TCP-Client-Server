@@ -39,12 +39,12 @@ int main(){
   scanf("%s",temp);
   bzero(buffer, 1024);
   strcpy(buffer, temp);
-  printf("Client: %s\n", buffer);
+  printf("\n[+]Data Sent: %s\n", buffer);
   send(sock, buffer, strlen(buffer), 0);
 
   bzero(buffer, 1024);
   recv(sock, buffer, sizeof(buffer), 0);
-  printf("Server: %s\n", buffer);
+  printf("[+]Data Recieved: %s\n", buffer);
   
   close(sock);
   printf("Disconnected from the server.\n");
