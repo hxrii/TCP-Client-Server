@@ -31,21 +31,27 @@ int main(){
   connect(sock, (struct sockaddr*)&addr, sizeof(addr));
   printf("Connected to the server.\n");
 
-  
+  char stop[10]="exit";
    
-    
+  while(1){
   printf("Enter the string: ");
   char temp[1024];
   scanf("%s",temp);
   bzero(buffer, 1024);
   strcpy(buffer, temp);
+  if(strcmp(temp,stop)==0)
+  {
+     send(sock, buffer, strlen(buffer), 0);
+     break;
+  }
   printf("\n[+]Data Sent: %s\n", buffer);
   send(sock, buffer, strlen(buffer), 0);
+
 
   bzero(buffer, 1024);
   recv(sock, buffer, sizeof(buffer), 0);
   printf("[+]Data Recieved: %s\n", buffer);
-  
+  }
   close(sock);
   printf("Disconnected from the server.\n");
   

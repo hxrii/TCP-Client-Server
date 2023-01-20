@@ -34,7 +34,7 @@ int main(){
     exit(1);
   }
   printf("[x]Bind to the port number: %d\n", port);
-
+char stop[10]="exit";
   listen(server_sock, 5);
   printf("Listening...\n");
 
@@ -43,13 +43,16 @@ int main(){
     client_sock = accept(server_sock, (struct sockaddr*)&client_addr, &addr_size);
     printf("[+]Client connected.\n");
 
+
+  while(1){
     bzero(buffer, 1024);
     recv(client_sock, buffer, sizeof(buffer), 0);
+
+  if(strcmp(stop,buffer)==0)
+  {
+     break;
+  }
     printf("[+]Data Recieved: %s\n", buffer);
-
-
-
-
     int len = strlen(buffer);
     for(int i=0;i<len/2;i++)
     {
@@ -61,7 +64,7 @@ int main(){
 
     printf("[+]Data Sent: %s\n", buffer);
     send(client_sock, buffer, strlen(buffer), 0);
-
+  }
   close(client_sock);
     printf("[+]Client disconnected.\n\n");
     break;
